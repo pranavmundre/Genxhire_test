@@ -5,7 +5,23 @@ services:
             context: .
             dockerfile: Dockerfile
         command: python manage.py runserver 0.0.0.0:8000
+        environment:
+            - DB_HOST=db
+            - DB_NAME=db-dev
+            - DB_USER=pranav
+            - DB_PASS=password
         ports:
             - 8000:8000
         volumes:
             - .:/app
+        depends_on:
+            - db
+
+    db:
+        image: postgres:13-alpine
+        environment:
+          - POSTGRES_DB=db-dev
+          - POSTGRES_USER=pranav
+          - POSTGRES_PASSWORD=password
+        ports:
+          - "5432:5432"
