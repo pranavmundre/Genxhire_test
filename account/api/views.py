@@ -9,7 +9,8 @@ class PersonAPIView(generics.ListCreateAPIView, generics.UpdateAPIView):
     serializer_class = PersonSerializer
 
 
-class PersonViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet, generics.UpdateAPIView):
+class PersonViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet, generics.UpdateAPIView,
+                    generics.DestroyAPIView, mixins.UpdateModelMixin):
     queryset = Person.objects.all()
     serializer_class = PersonSerializer
 
@@ -19,7 +20,7 @@ class EmployeeAPIView(generics.ListCreateAPIView, generics.UpdateAPIView):
     serializer_class = EmployeeSerializer
 
 
-class EmployeeViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet, generics.UpdateAPIView):
+class EmployeeViewSet(mixins.RetrieveModelMixin, viewsets.GenericViewSet, generics.UpdateAPIView,
+                      generics.DestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-
